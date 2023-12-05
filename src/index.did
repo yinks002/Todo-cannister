@@ -1,0 +1,11 @@
+service: () -> {
+    MarkTodoDone: (principal) -> (variant {Ok:record {id:principal; content:text; Heading:text; createdAt:nat64; Markcompleted:bool}; Err:variant {UserDoesnotexist:principal; TodoAlreadyCompleted:principal; Tododoesnotexist:principal}});
+    createTodos: (principal, record {content:text; Heading:text}) -> (variant {Ok:record {id:principal; content:text; Heading:text; createdAt:nat64; Markcompleted:bool}; Err:variant {UserDoesnotexist:principal; TodoAlreadyCompleted:principal; Tododoesnotexist:principal}});
+    createUser: (text) -> (record {id:principal; username:text; createdAt:nat64; Todos:vec principal});
+    deleteUsers: (principal) -> (variant {Ok:record {id:principal; username:text; createdAt:nat64; Todos:vec principal}; Err:variant {UserDoesnotexist:principal; TodoAlreadyCompleted:principal; Tododoesnotexist:principal}});
+    getID: () -> (principal) query;
+    getMessage: () -> (text) query;
+    getUsersById: (principal) -> (record {id:principal; username:text; createdAt:nat64; Todos:vec principal}) query;
+    setMessage: (text) -> ();
+    viewUsers: () -> (vec record {id:principal; username:text; createdAt:nat64; Todos:vec principal}) query;
+}
